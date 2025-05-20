@@ -1,5 +1,15 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for
+from flask import (
+    Flask,
+    render_template,
+    request,
+    redirect,
+    url_for,
+    session,
+    flash,
+    jsonify,
+    make_response
+)
 
 #buat instance
 app = Flask(__name__)
@@ -30,13 +40,11 @@ def show_user(username):
 def show_post(post_id):
     return f"Post ID: {post_id}"
 
-
 @app.route('/user/<username>/<int:post_id>')
 def user_profile(username, post_id):
     return render_template('user.html',
                            username=username,
                            post_id=post_id)
-
 
 @app.route('/math', methods=['GET'])
 def math_form():
