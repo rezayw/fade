@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kalkulator Interaktif</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .calculator {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .results {
+            margin-top: 20px;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        .error {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Kalkulator Matematika</h1>
+        
+        <form action="/math" method="GET">
+            <div class="input-group">
+                <label for="num1">Angka Pertama:</label>
+                <input type="number" step="any" name="num1" id="num1" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="num2">Angka Kedua:</label>
+                <input type="number" step="any" name="num2" id="num2" required>
+            </div>
+            
+            <button type="submit">Hitung</button>
+        </form>
+        
+        {% if results %}
+        <div class="results">
+            <h2>Hasil Perhitungan:</h2>
+            <p><strong>{{ num1 }}</strong> + <strong>{{ num2 }}</strong> = {{ results.penjumlahan }}</p>
+            <p><strong>{{ num1 }}</strong> - <strong>{{ num2 }}</strong> = {{ results.pengurangan }}</p>
+            <p><strong>{{ num1 }}</strong> × <strong>{{ num2 }}</strong> = {{ results.perkalian }}</p>
+            <p><strong>{{ num1 }}</strong> ÷ <strong>{{ num2 }}</strong> = 
+                {% if results.pembagian is string %}
+                    <span class="error">{{ results.pembagian }}</span>
+                {% else %}
+                    {{ results.pembagian }}
+                {% endif %}
+            </p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
