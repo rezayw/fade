@@ -11,6 +11,15 @@ from flask import (
     make_response
 )
 
+from flask_wtf.csrf import CSRFProtect
+from forms import (
+    LoginForm,
+    RegistrationForm,
+    UploadForm,
+    MathForm
+)
+
+
 #buat instance
 app = Flask(__name__)
 
