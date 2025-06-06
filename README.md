@@ -1,2 +1,7 @@
 # Testing Python Logic
-' App basic challage for python code learning
+
+App basic challange for python code learning
+- Simple Logic
+- Array
+- Calculator
+- requests
